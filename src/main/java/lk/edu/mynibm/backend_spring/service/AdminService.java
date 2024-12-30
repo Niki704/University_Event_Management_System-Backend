@@ -26,8 +26,28 @@ public class AdminService {
         return modelMapper.map(adminList, new TypeToken<List<AdminDTO>>() {}.getType());
     }
 
+    public AdminDTO getAdminById(Integer Id) {
+        Admin admin = adminRepo.findAdminById(Id);
+        return modelMapper.map(admin, AdminDTO.class);
+    }
+
     public AdminDTO saveAdmin(AdminDTO adminDTO) {
         adminRepo.save(modelMapper.map(adminDTO, Admin.class));
         return adminDTO;
+    }
+
+    public AdminDTO updateAdmin(AdminDTO adminDTO) {
+        adminRepo.save(modelMapper.map(adminDTO, Admin.class));
+        return adminDTO;
+    }
+
+    public String deleteAdmin(AdminDTO adminDTO) {
+        adminRepo.delete(modelMapper.map(adminDTO, Admin.class));
+        return "Admin deleted";
+    }
+
+    public String deleteAdminById(Integer Id) {
+        adminRepo.deleteById(Id);
+        return "Admin deleted by ID";
     }
 }

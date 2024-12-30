@@ -20,8 +20,28 @@ public class AdminController {
         return adminService.getAllAdmins();
     }
 
-    @PostMapping
-    public String saveAdmin() {
+    @GetMapping("/getadmin/{Id}")
+    public AdminDTO getAdminById(@PathVariable int Id) {
+        return adminService.getAdminById(Id);
+    }
 
+    @PostMapping("/saveadmin")
+    public AdminDTO saveAdmin(@RequestBody AdminDTO adminDTO) {
+        return adminService.saveAdmin(adminDTO);
+    }
+
+    @PutMapping("/updateadmin")
+    public AdminDTO updateAdmin(@RequestBody AdminDTO adminDTO) {
+        return adminService.updateAdmin(adminDTO);
+    }
+
+    @DeleteMapping("/deleteadmin")
+    public String deleteAdmin(@RequestBody AdminDTO adminDTO) {
+        return adminService.deleteAdmin(adminDTO);
+    }
+
+    @DeleteMapping("/deleteadmin/{Id}")
+    public String deleteAdminById(@PathVariable Integer Id) {
+        return adminService.deleteAdminById(Id);
     }
 }
