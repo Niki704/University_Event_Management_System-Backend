@@ -31,14 +31,20 @@ public class AdminService {
         return modelMapper.map(admin, AdminDTO.class);
     }
 
-    public AdminDTO saveAdmin(AdminDTO adminDTO) {
+    public String saveAdmin(AdminDTO adminDTO) {
         adminRepo.save(modelMapper.map(adminDTO, Admin.class));
-        return adminDTO;
+        return "Admin Created Successfully !";
     }
 
-    public AdminDTO updateAdmin(AdminDTO adminDTO) {
-        adminRepo.save(modelMapper.map(adminDTO, Admin.class));
-        return adminDTO;
+    public String updateAdmin(Integer id, AdminDTO adminDTO) {
+        Admin admin = adminRepo.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Admin with ID " + id + " not found"));
+
+        modelMapper.map(adminDTO, admin);
+        adminRepo.save(admin);
+//        Admin updatedAdmin = adminRepo.save(existingAdmin);
+//        modelMapper.map(updatedAdmin, AdminDTO.class);
+        return "Admin Updated Successfully !";
     }
 
     public String deleteAdmin(AdminDTO adminDTO) {
@@ -48,6 +54,6 @@ public class AdminService {
 
     public String deleteAdminById(Integer Id) {
         adminRepo.deleteById(Id);
-        return "Admin deleted by ID";
+        return "Admin deleted Successfully !";
     }
 }

@@ -15,33 +15,33 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/getadmins")
-    public List<AdminDTO> getAllAdmins() {
-        return adminService.getAllAdmins();
-    }
+//    @GetMapping("/getadmins")
+//    public List<AdminDTO> getAllAdmins() {
+//        return adminService.getAllAdmins();
+//    }
 
-    @GetMapping("/getadmin/{Id}")
-    public AdminDTO getAdminById(@PathVariable int Id) {
-        return adminService.getAdminById(Id);
-    }
+//    @GetMapping("/getadmin/{Id}")
+//    public AdminDTO getAdminById(@PathVariable int Id) {
+//        return adminService.getAdminById(Id);
+//    }
 
-    @PostMapping("/saveadmin")
-    public AdminDTO saveAdmin(@RequestBody AdminDTO adminDTO) {
+    @PostMapping("/admins/add")
+    public String saveAdmin(@RequestBody AdminDTO adminDTO) {
         return adminService.saveAdmin(adminDTO);
     }
 
-    @PutMapping("/updateadmin")
-    public AdminDTO updateAdmin(@RequestBody AdminDTO adminDTO) {
-        return adminService.updateAdmin(adminDTO);
+    @PutMapping("/admins/update/{id}")
+    public String updateAdmin(@PathVariable Integer id, @RequestBody AdminDTO adminDTO) {
+        return adminService.updateAdmin(id, adminDTO);
     }
 
-    @DeleteMapping("/deleteadmin")
-    public String deleteAdmin(@RequestBody AdminDTO adminDTO) {
-        return adminService.deleteAdmin(adminDTO);
-    }
+//    @DeleteMapping("/deleteadmin")
+//    public String deleteAdmin(@RequestBody AdminDTO adminDTO) {
+//        return adminService.deleteAdmin(adminDTO);
+//    }
 
-    @DeleteMapping("/deleteadmin/{Id}")
-    public String deleteAdminById(@PathVariable Integer Id) {
-        return adminService.deleteAdminById(Id);
+    @DeleteMapping("/admins/delete/{id}")
+    public String deleteAdminById(@PathVariable Integer id) {
+        return adminService.deleteAdminById(id);
     }
 }
