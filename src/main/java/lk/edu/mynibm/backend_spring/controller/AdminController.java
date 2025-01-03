@@ -1,8 +1,10 @@
 package lk.edu.mynibm.backend_spring.controller;
 
 import lk.edu.mynibm.backend_spring.dto.AdminDTO;
+import lk.edu.mynibm.backend_spring.model.Admin;
 import lk.edu.mynibm.backend_spring.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,12 @@ public class AdminController {
     @PostMapping("/admins/add")
     public String saveAdmin(@RequestBody AdminDTO adminDTO) {
         return adminService.saveAdmin(adminDTO);
+    }
+
+    @PostMapping("/admins/bulk")
+    public ResponseEntity<List<Admin>> addBulk(@RequestBody List<Admin> admins) {
+        List<Admin> savedAdmins = adminService.addBulkAdmins(admins);
+        return ResponseEntity.ok(savedAdmins);
     }
 
     @PutMapping("/admins/update/{id}")

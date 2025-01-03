@@ -36,6 +36,11 @@ public class AdminService {
         return "Admin Created Successfully !";
     }
 
+    //Bulk add
+    public List<Admin> addBulkAdmins(List<Admin> admins) {
+        return adminRepo.saveAll(admins);
+    }
+
     public String updateAdmin(Integer id, AdminDTO adminDTO) {
         Admin admin = adminRepo.findById(id)
                         .orElseThrow(() -> new RuntimeException("Admin with ID " + id + " not found"));
