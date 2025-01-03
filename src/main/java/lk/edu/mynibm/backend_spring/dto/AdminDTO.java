@@ -1,5 +1,6 @@
 package lk.edu.mynibm.backend_spring.dto;
 
+import lk.edu.mynibm.backend_spring.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,5 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AdminDTO {
     private int id;
-    private String name;
+    private String username;
+    private String password;
+    private String email;
+    private Role role;
 }
