@@ -1,7 +1,7 @@
 package lk.edu.mynibm.backend_spring.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lk.edu.mynibm.backend_spring.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,4 +13,22 @@ import lombok.NoArgsConstructor;
 public class Lecturer {
     @Id
     private int id;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Column(unique = true)
+    private String contact;
+
+    @Column()
+    private String department;
 }
