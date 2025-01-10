@@ -31,26 +31,23 @@ public class LecturerService {
         return modelMapper.map(lecturer, LecturerDTO.class);
     }
 
-    public String saveLecturer(LecturerDTO lecturerDTO) {
+    public void saveLecturer(LecturerDTO lecturerDTO) {
         lecturerRepo.save(modelMapper.map(lecturerDTO, Lecturer.class));
-        return "Lecturer Created Successfully!";
     }
 
     public List<Lecturer> addBulkLecturers(List<Lecturer> lecturers) {
         return lecturerRepo.saveAll(lecturers);
     }
 
-    public String updateLecturer(Integer id, LecturerDTO lecturerDTO) {
+    public void updateLecturer(Integer id, LecturerDTO lecturerDTO) {
         Lecturer lecturer = lecturerRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Lecturer with ID " + id + " not found"));
 
         modelMapper.map(lecturerDTO, lecturer);
         lecturerRepo.save(lecturer);
-        return "Lecturer Updated Successfully!";
     }
 
-    public String deleteLecturerById(Integer id) {
+    public void deleteLecturerById(Integer id) {
         lecturerRepo.deleteById(id);
-        return "Lecturer Deleted Successfully!";
     }
 }
