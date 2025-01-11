@@ -4,6 +4,7 @@ import lk.edu.mynibm.backend_spring.dto.BatchDTO;
 import lk.edu.mynibm.backend_spring.model.Batch;
 import lk.edu.mynibm.backend_spring.service.BatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,10 @@ public class BatchController {
 
     @PutMapping("/batches/update/{id}")
     public ResponseEntity<String> updateBatch(@PathVariable String id, @RequestBody BatchDTO batchDTO) {
+        if (!id.matches("^B\\d+$")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Invalid ID format. Expected format: B### (e.g., B001).");
+        }
         batchService.updateBatch(id, batchDTO);
         return ResponseEntity.ok("Batch updated successfully");
     }
