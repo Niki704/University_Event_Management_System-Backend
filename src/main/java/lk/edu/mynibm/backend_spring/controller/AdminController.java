@@ -17,10 +17,10 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-//    @GetMapping("/getadmins")
-//    public List<AdminDTO> getAllAdmins() {
-//        return adminService.getAllAdmins();
-//    }
+    @GetMapping("/admins/get")
+    public List<AdminDTO> getAllAdmins() {
+        return adminService.getAllAdmins();
+    }
 
 //    @GetMapping("/getadmin/{Id}")
 //    public AdminDTO getAdminById(@PathVariable int Id) {
