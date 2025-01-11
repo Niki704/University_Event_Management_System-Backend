@@ -28,8 +28,9 @@ public class AdminController {
 //    }
 
     @PostMapping("/admins/add")
-    public String saveAdmin(@RequestBody AdminDTO adminDTO) {
-        return adminService.saveAdmin(adminDTO);
+    public ResponseEntity<String> saveAdmin(@RequestBody AdminDTO adminDTO) {
+        adminService.saveAdmin(adminDTO);
+        return ResponseEntity.status(201).body("Admin created successfully");
     }
 
     @PostMapping("/admins/bulk")
@@ -39,8 +40,9 @@ public class AdminController {
     }
 
     @PutMapping("/admins/update/{id}")
-    public String updateAdmin(@PathVariable Integer id, @RequestBody AdminDTO adminDTO) {
-        return adminService.updateAdmin(id, adminDTO);
+    public ResponseEntity<String> updateAdmin(@PathVariable Integer id, @RequestBody AdminDTO adminDTO) {
+        adminService.updateAdmin(id, adminDTO);
+        return ResponseEntity.ok("Admin updated successfully");
     }
 
 //    @DeleteMapping("/deleteadmin")
@@ -49,7 +51,8 @@ public class AdminController {
 //    }
 
     @DeleteMapping("/admins/delete/{id}")
-    public String deleteAdminById(@PathVariable Integer id) {
-        return adminService.deleteAdminById(id);
+    public ResponseEntity<String> deleteAdminById(@PathVariable Integer id) {
+        adminService.deleteAdminById(id);
+        return ResponseEntity.ok("Admin deleted successfully");
     }
 }
